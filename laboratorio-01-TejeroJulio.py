@@ -1,80 +1,80 @@
 import random
 import numpy as np
 
-print("Hola! Bienvenido al juego Meomorice")
-numero_cartas = int(input("¿Con cuantos pares quieres jugar? "))
-puntos_jugador1 = int(0)
-puntos_jugador2 = int(0)
-lista_tablero = []
+print("Hi! Welcome to the game Meomorice")
+n_pairs = int(input("With how many pairs do you want to play? "))
+points_p1 = int(0)
+points_p2 = int(0)
+number_list = []
 
 n = 1
-while n <= numero_cartas:
-    lista_tablero.append(n)
-    lista_tablero.append(n)
+while n <= n_pairs:
+    number_list.append(n)
+    number_list.append(n)
     n += 1
 
-random.shuffle(lista_tablero)
+random.shuffle(number_list)
 
-tablero_oculto = []
-tablero_numeros = []
-n = int((2*numero_cartas)**(1/2))
+hidden_board = []
+number_board = []
+n = int((2*n_pairs)**(1/2))
 z = 0
 
-if (n**2) == 2*numero_cartas:
+if (n**2) == 2*n_pairs:
 
     for x in range(0,n):
-        tablero_oculto_add = []
+        hidden_board_add = []
 
         for i in range(0,n):
-            tablero_oculto_add.append("*")
+            hidden_board_add.append("*")
 
-        tablero_oculto.append(tablero_oculto_add)
+        hidden_board.append(hidden_board_add)
 
     for a in range(0,n):
-        tablero_numeros_add = []
+        number_board_add = []
 
         for b in range(0,n):
-            tablero_numeros_add.append(int(lista_tablero[z]))
+            number_board_add.append(int(number_list[z]))
             z += 1
 
-        tablero_numeros.append(tablero_numeros_add)
+        number_board.append(number_board_add)
             
 else:
-    numero_filas = int((2*numero_cartas)**(1/2)) + 1
-    numero_columnas = numero_filas  
+    row_number = int((2*n_pairs)**(1/2)) + 1
+    column_number = row_number  
     z = 0 
     
-    for i in range(0,numero_filas):
-        tablero_oculto_add = []
+    for i in range(0,row_number):
+        hidden_board_add = []
 
-        for x in range(0, numero_columnas):
+        for x in range(0, column_number):
 
-            if z < len(lista_tablero):
-                tablero_oculto_add.append("*")
+            if z < len(number_list):
+                hidden_board_add.append("*")
                 z += 1
 
             else:
-                tablero_oculto_add.append ("")
+                hidden_board_add.append ("")
                 z += 1
         
-        tablero_oculto.append(tablero_oculto_add)
+        hidden_board.append(hidden_board_add)
 
     z = 0
 
-    for i in range(0,numero_filas):
-        tablero_numeros_add = []
+    for i in range(0,row_number):
+        number_board_add = []
 
-        for x in range(0, numero_columnas):
+        for x in range(0, column_number):
 
-            if z < len(lista_tablero):
-                tablero_numeros_add.append(int(lista_tablero[z]))
+            if z < len(number_list):
+                number_board_add.append(int(number_list[z]))
                 z += 1
 
             else:
-                tablero_numeros_add.append ("")
+                number_board_add.append ("")
                 z += 1
 
-        tablero_numeros.append(tablero_numeros_add)
+        number_board.append(number_board_add)
 
 """
 for i in tablero_numeros:
@@ -83,115 +83,116 @@ for i in tablero_numeros:
 
 n = 0
 
-while (puntos_jugador1 + puntos_jugador2) < numero_cartas:
-    puntos_jugador1_rec = puntos_jugador1
-    puntos_jugador2_rec = puntos_jugador2
+while (points_p1 + points_p2) < n_pairs:
+    points_p1_rec = points_p1
+    points_p2_rec = points_p2
     n = 0
 
-    while puntos_jugador1 != puntos_jugador1_rec or n == 0:
+    while points_p1 != points_p1_rec or n == 0:
         print("")
         print("Player 1 turn!")
         print("")
 
-        for i in tablero_oculto:
+        for i in hidden_board:
             print(*i)
 
         n = 1
-        puntos_jugador1_rec = puntos_jugador1
+        points_p1_rec = points_p1
 
         print("")
-        columna_elegida_j11 = (int(input ("Choose a column (from 1 to n): ")) - 1)
-        fila_elegida_j11 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
-        numero1 = tablero_numeros[fila_elegida_j11][columna_elegida_j11]
+        
+        chosen_column_j11 = (int(input ("Choose a column (from 1 to n): ")) - 1)
+        chosen_row_j11 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
+        number_1 = number_board[chosen_row_j11][chosen_column_j11]
         print("")
-        print("Card number: ", numero1)
+        print("Card number: ", number_1)
         print("")
-        tablero_oculto[fila_elegida_j11][columna_elegida_j11] = numero1
-        for i in tablero_oculto:
+        hidden_board[chosen_row_j11][chosen_column_j11] = number_1
+        for i in hidden_board:
             print(*i)
 
         print("")
-        columna_elegida_j12 = (int(input ("Choose a column (from 1 to n): ")) - 1)
-        fila_elegida_j12 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
-        numero2 = tablero_numeros[fila_elegida_j12][columna_elegida_j12]
+        chosen_column_j12 = (int(input ("Choose a column (from 1 to n): ")) - 1)
+        chosen_row_j12 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
+        number_2 = number_board[chosen_row_j12][chosen_column_j12]
         print("")
-        print("Card number: ", numero2)
+        print("Card number: ", number_2)
         print("")
-        tablero_oculto[fila_elegida_j12][columna_elegida_j12] = numero2
+        hidden_board[chosen_row_j12][chosen_column_j12] = number_2
 
-        for i in tablero_oculto:
+        for i in hidden_board:
             print(*i)
 
-        tablero_oculto[fila_elegida_j11][columna_elegida_j11] = "*"
-        tablero_oculto[fila_elegida_j12][columna_elegida_j12] = "*"
+        hidden_board[chosen_row_j11][chosen_column_j11] = "*"
+        hidden_board[chosen_row_j12][chosen_column_j12] = "*"
 
-        if numero1 == numero2:
-            puntos_jugador1 += 1
+        if number_1 == number_2:
+            points_p1 += 1
             print("")
             print("You won a point")
             print("")
-            print("Total points player1: ", puntos_jugador1)
+            print("Total points player1: ", points_p1)
             print("")
-            tablero_oculto[fila_elegida_j11][columna_elegida_j11] = "-"
-            tablero_oculto[fila_elegida_j12][columna_elegida_j12] = "-"
+            hidden_board[chosen_row_j11][chosen_column_j11] = "-"
+            hidden_board[chosen_row_j12][chosen_column_j12] = "-"
 
-            if puntos_jugador1 + puntos_jugador2 == numero_cartas:
+            if points_p1 + points_p2 == n_pairs:
                 n = 3
                 break
 
-    while puntos_jugador2 != puntos_jugador2_rec or n == 1:
+    while points_p2 != points_p2_rec or n == 1:
         print("")
         print("Player 2 turn!")
         print("")
 
-        for i in tablero_oculto:
+        for i in hidden_board:
             print(*i)
         
         n = 2
-        puntos_jugador2_rec = puntos_jugador2
+        points_p2_rec = points_p2
 
-        columna_elegida_j21 = (int(input ("Choose a column (from 1 to n): ")) - 1)
-        fila_elegida_j21 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
-        numero1 = tablero_numeros[fila_elegida_j21][columna_elegida_j21]
+        chosen_column_j21 = (int(input ("Choose a column (from 1 to n): ")) - 1)
+        chosen_row_j21 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
+        number_1 = number_board[chosen_row_j21][chosen_column_j21]
         print("")
-        print("Card number: ", numero1)
+        print("Card number: ", number_1)
         print("")
-        tablero_oculto[fila_elegida_j21][columna_elegida_j21] = numero1
+        hidden_board[chosen_row_j21][chosen_column_j21] = number_1
 
-        for i in tablero_oculto:
+        for i in hidden_board:
             print(*i)
 
-        columna_elegida_j22 = (int(input ("Choose a column (from 1 to n): ")) - 1)
-        fila_elegida_j22 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
-        numero2 = tablero_numeros[fila_elegida_j22][columna_elegida_j22]
+        chosen_column_j22 = (int(input ("Choose a column (from 1 to n): ")) - 1)
+        chosen_row_j22 = (int(input ("Choose a row (from 1 to n): ")) - 1) 
+        number_2 = number_board[chosen_row_j22][chosen_column_j22]
         print("")
-        print("Card number: ", numero2)
+        print("Card number: ", number_2)
         print("")
-        tablero_oculto[fila_elegida_j22][columna_elegida_j22] = numero2
+        hidden_board[chosen_row_j22][chosen_column_j22] = number_2
 
-        for i in tablero_oculto:
+        for i in hidden_board:
             print(*i)
 
-        tablero_oculto[fila_elegida_j21][columna_elegida_j21] = "*"
-        tablero_oculto[fila_elegida_j22][columna_elegida_j22] = "*"
+        hidden_board[chosen_row_j21][chosen_column_j21] = "*"
+        hidden_board[chosen_row_j22][chosen_column_j22] = "*"
 
-        if numero1 == numero2:
-            puntos_jugador2 += 1
+        if number_1 == number_2:
+            points_p2 += 1
             print("")
             print("You won a point")
             print("")
-            print("Total points player 2: ", puntos_jugador2)
+            print("Total points player 2: ", points_p2)
             print("")
-            tablero_oculto[fila_elegida_j21][columna_elegida_j21] = "-"
-            tablero_oculto[fila_elegida_j22][columna_elegida_j22] = "-"
+            hidden_board[chosen_row_j21][chosen_column_j21] = "-"
+            hidden_board[chosen_row_j22][chosen_column_j22] = "-"
 
-            if puntos_jugador1 + puntos_jugador2 == numero_cartas:
+            if points_p1 + points_p2 == n_pairs:
                 break
 
-if puntos_jugador1 > puntos_jugador2:
+if points_p1 > points_p2:
     print("Player 1 won!")
 
-elif puntos_jugador1 < puntos_jugador2:
+elif points_p1 < points_p2:
     print("Player 2 won!")
 
 else:
